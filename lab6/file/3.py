@@ -1,5 +1,5 @@
 import os
-k="C:/Users/zhani/OneDrive/Рабочий стол/pp2/h"
+k="C:/Users/Aisha/Desktop/pp2/lab6/h"
 path = k
 exist = os.access(path, os.F_OK)
 if exist == True:

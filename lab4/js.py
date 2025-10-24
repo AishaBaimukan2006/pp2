@@ -16,3 +16,5 @@ while i != 3:
     MTU = a["imdata"][i]["l1PhysIf"]["attributes"]["mtu"]
     print(topology,"                            ", speed ," ", MTU)
     i+=1
+
+

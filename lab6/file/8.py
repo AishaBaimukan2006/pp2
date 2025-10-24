@@ -1,8 +1,8 @@
 import os
 
-path = "C:/Users/zhani/OneDrive/Рабочий стол/pp2/h"
+path = "C:/Users/Aisha/Desktop/pp2/lab6/h"
 
 if os.path.exists(path):
-    os.remove(path)
+    os.rmdir(path)
 else:
     print("The file does not exist")

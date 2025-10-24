@@ -1,5 +1,5 @@
 import os
-path = "C:/Users/zhani/OneDrive/Рабочий стол/pp2/h"
+path = "C:/Users/Aisha/Desktop/pp2/h"
 
 existence = os.access(path, os.F_OK)
 print("Does the path exists:", existence)

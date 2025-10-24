@@ -42,3 +42,11 @@ print(match)
 print("task10")
 match = re.sub(r"[A-Z]"," ",data)
 print(match)
+
+
+
+
+
+
+
+
