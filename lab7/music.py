@@ -5,11 +5,11 @@ pygame.init()
 screen = pygame.display.set_mode((1260,900))
 pygame.display.set_caption('VSIX Prince')
 clock = pygame.time.Clock()
-prince = pygame.image.load()
-pause = pygame.image.load("C:/Users/zhani/OneDrive/Рабочий стол/pp2/lab7/image/pause.png")
-play = pygame.image.load("C:/Users/zhani/OneDrive/Рабочий стол/pp2/lab7/image/play.png")
-skip = pygame.image.load("C:/Users/zhani/OneDrive/Рабочий стол/pp2/lab7/image/next.png")
-back = pygame.image.load("C:/Users/zhani/OneDrive/Рабочий стол/pp2/lab7/image/back.png")
+prince = pygame.image.load("C:/Users/Aisha/Desktop/pp2/lab7/image/VSIX.jpeg")
+pause = pygame.image.load("C:/Users/Aisha/Desktop/pp2/lab7/image/pause.png")
+play = pygame.image.load("lab7/image/play.png")
+skip = pygame.image.load("C:/Users/Aisha/Desktop/pp2/lab7/image/next.png")
+back = pygame.image.load("C:/Users/Aisha/Desktop/pp2/lab7/image/back.png")
 new_size=(150,150)
 font2 = pygame.font.SysFont(None, 20)
 pause=pygame.transform.scale(pause, new_size)
@@ -21,9 +21,9 @@ play_rect = play.get_rect(topleft=(600, 750))
 skip_rect = skip.get_rect(topleft=(800, 750))
 back_rect = back.get_rect(topleft=(200, 750))
 playlist = [
-    "C:/Users/zhani/OneDrive/Рабочий стол/pp2/lab7/music/1.mp3",
-    "C:/Users/zhani/OneDrive/Рабочий стол/pp2/lab7/music/2.mp3",
-    "C:/Users/zhani/OneDrive/Рабочий стол/pp2/lab7/music/3.mp3"
+    "lab7/music/muz1.mp3",
+    "C:/Users/Aisha/Desktop/pp2/lab7/music/muz2.mp3",
+    "lab7/music/muz3.mp3"
 ]   
 
 cur_track=0

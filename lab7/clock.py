@@ -3,18 +3,18 @@ import datetime
 from sys import exit
 
 pygame.init()
-screen = pygame.display.set_mode((700,500))
+screen = pygame.display.set_mode((1000,700))
 pygame.display.set_caption("Clock")
 clock = pygame.time.Clock()
 test_font = pygame.font.Font(None,50)
-mike = pygame.image.load("C:/Users/Aisha/Desktop/pp2/lab7/image/49c5c19e-bd11-407d-bd7c-d3f17a2c6ad6.jpeg")
-mike = pygame.transform.scale(mike, (700, 500))
-mike_lefthand=pygame.image.load("C:/Users/Aisha/Desktop/pp2/lab7/image/dab16ac4-4eb9-4970-adda-3a2284aaa2b3.jpeg").convert_alpha()
-mike_righthand=pygame.image.load("C:/Users/Aisha/Desktop/pp2/lab7/image/ff3ed679-6236-49da-944f-be965fcf3a53.jpeg").convert_alpha()
+mike = pygame.image.load("lab7/image/clock.png")
+mike = pygame.transform.scale(mike, (1000, 700))
+mike_lefthand=pygame.image.load("lab7/image/leftarm.png").convert_alpha()
+mike_righthand=pygame.image.load("lab7/image/rightarm.png").convert_alpha()
 
 RED = (255, 0, 0)
 black = (50,50,5)
-clock_center=(350,262)
+clock_center=(500,350)
 
 def rotate_image(image, angle, center):
     rotated_image = pygame.transform.rotate(image, angle)
@@ -37,7 +37,7 @@ while True:
     text_rec = text_surface.get_rect(topleft = (0,0))
     
     screen.blit(mike,(0,0))  
-    pygame.draw.circle(screen, black, (350,262), 15)
+    
     rotated_second, second_rect = rotate_image(mike_lefthand, second_angle, clock_center)
     rotated_minute, minute_rect = rotate_image(mike_righthand, minute_angle, clock_center)
     screen.blit(rotated_minute, minute_rect.topleft)
