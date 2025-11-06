@@ -23,7 +23,7 @@ font = pygame.font.SysFont("Verdana", 20)
 font_small = pygame.font.SysFont("Verdana", 20)
 game_over = font.render("Game Over", True, BLACK)
 
-background = pygame.image.load("pp2/images2/AnimatedStreet.png")
+background = pygame.image.load("images2/AnimatedStreet.png")
 
 screen = pygame.display.set_mode((400, 600))
 screen.fill(WHITE)
@@ -32,7 +32,7 @@ pygame.display.set_caption("Racer")
 class Enemy(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = pygame.image.load("pp2/images2/Enemy.png")
+        self.image = pygame.image.load("images2/Enemy.png")
         self.rect = self.image.get_rect()
         self.rect.center = (random.randint(40, SCREEN_WIDTH - 40), 0)
 
@@ -49,7 +49,7 @@ c1, c2, c3, c4, c5 = False, False, False, False, False
 class Coin(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = pygame.image.load("pp2/images2/coin.png")
+        self.image = pygame.image.load("images2/coin.png")
         self.image = pygame.transform.scale(self.image, (40, 40))
         self.rect = self.image.get_rect()
         self.rect.center = (random.randint(40, SCREEN_WIDTH - 40), random.randint(40, SCREEN_HEIGHT - 40))
@@ -83,7 +83,7 @@ class Coin(pygame.sprite.Sprite):
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = pygame.image.load("pp2/images2/Player.png")
+        self.image = pygame.image.load("images2/Player.png")
         self.rect = self.image.get_rect()
         self.rect.center = (160, 520)
 
@@ -176,3 +176,4 @@ while True:
 
     pygame.display.update()
     FramePerSec.tick(FPS)
+
