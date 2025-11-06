@@ -3,7 +3,7 @@ from sys import exit
 
 pygame.init()
 screen = pygame.display.set_mode((1260,900))
-pygame.display.set_caption('VSIX Prince')
+pygame.display.set_caption(' Prince')
 clock = pygame.time.Clock()
 prince = pygame.image.load("C:/Users/Aisha/Desktop/pp2/lab7/image/VSIX.jpeg")
 pause = pygame.image.load("C:/Users/Aisha/Desktop/pp2/lab7/image/pause.png")
@@ -16,12 +16,12 @@ pause=pygame.transform.scale(pause, new_size)
 play=pygame.transform.scale(play, new_size)
 skip=pygame.transform.scale(skip, new_size)
 back=pygame.transform.scale(back, new_size)
-pause_rect = pause.get_rect(topleft=(400, 750))
-play_rect = play.get_rect(topleft=(600, 750))
-skip_rect = skip.get_rect(topleft=(800, 750))
-back_rect = back.get_rect(topleft=(200, 750))
+pause_rect = pause.get_rect(topleft=(400, 650))
+play_rect = play.get_rect(topleft=(600, 650))
+skip_rect = skip.get_rect(topleft=(800, 650))
+back_rect = back.get_rect(topleft=(200, 650))
 playlist = [
-    "lab7/music/muz1.mp3",
+    "lab7/music/Anime_openingi_-_Jujutsu_Kaisen_Opening_1_78716630.mp3",
     "C:/Users/Aisha/Desktop/pp2/lab7/music/muz2.mp3",
     "lab7/music/muz3.mp3"
 ]   

@@ -11,6 +11,7 @@ mike = pygame.image.load("lab7/image/clock.png")
 mike = pygame.transform.scale(mike, (1000, 700))
 mike_lefthand=pygame.image.load("lab7/image/leftarm.png").convert_alpha()
 mike_righthand=pygame.image.load("lab7/image/rightarm.png").convert_alpha()
+mike_hand=pygame.image.load("lab7/image/rightarm.png").convert_alpha()
 
 RED = (255, 0, 0)
 black = (50,50,5)
@@ -30,9 +31,11 @@ while True:
     now=datetime.datetime.now()
     seconds = now.second + now.microsecond / 1_000_000 
     minutes = now.minute + seconds / 60
+    hours = now.hour + minutes / 60
     second_angle = -seconds * 6
     minute_angle = -minutes * 6 
-    time = datetime.datetime.now().strftime('%M:%S')
+    hours_angle = -hours * 6
+    time = datetime.datetime.now().strftime('%H:%M:%S')
     text_surface = test_font.render(time,True,'Pink')
     text_rec = text_surface.get_rect(topleft = (0,0))
     
@@ -40,8 +43,10 @@ while True:
     
     rotated_second, second_rect = rotate_image(mike_lefthand, second_angle, clock_center)
     rotated_minute, minute_rect = rotate_image(mike_righthand, minute_angle, clock_center)
+    rotated_hour, hour_rect = rotate_image(mike_hand, hours_angle, clock_center)
     screen.blit(rotated_minute, minute_rect.topleft)
     screen.blit(rotated_second, second_rect.topleft)
+    screen.blit(rotated_hour, hour_rect.topleft)
     pygame.draw.rect(screen,'black',text_rec,0,25)
     screen.blit(text_surface,text_rec)
     pygame.display.update()
