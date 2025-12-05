@@ -1,6 +1,6 @@
 import psycopg2
 import csv
-from config import user,password,db_name,host
+
 
 print("1-Create the table inpit")
 print("2-Delete the table inpit")
@@ -11,17 +11,17 @@ print("6-Querying data")
 print("7-deleting data by username or phone")
 print("8-all records based on a pattern")
 print("9-many new users by list of name and phone")
-print("10-pagination LIMIT: b — how many rows to return OFFSET:a — which row to start with")
+print("10-pagination LIMIT: b-how many rows to return OFFSET:a - which row to start with")
 print("11-procedure insert data")
 print("12-delete_user by procedure")
 
 num = int(input("input the number: "))
 try:
     connection = psycopg2.connect(
-        host=host,
-        user=user,
-        password=password,
-        database=db_name
+        host='127.0.0.1',
+        user='Aisha',
+        password='12345678',
+        database='phonebook'
     )
     # 1. Create the table
     if num == 1:
@@ -47,7 +47,7 @@ try:
         phone = input("input the phone: ")
         with connection.cursor() as cursor:
             cursor.execute(
-                f"""INSERT INTO pp2 (name,number) VALUES(
+                f"""INSERT INTO {table_name} (name,number) VALUES(
                     '{name}',{phone})"""
             )
             print("[INFO] Data created succesfully")
@@ -59,7 +59,7 @@ try:
             with connection.cursor() as cursor:
                 for row in reader:
                     cursor.execute(
-                    "INSERT INTO pp2 (name, number) VALUES (%s, %s)",
+                    f"INSERT INTO {table_name} (name, number) VALUES (%s, %s)",
                     (row['name'], row['number'])
             )
             print("[INFO] Data created succesfully")
@@ -71,7 +71,7 @@ try:
             nam = input("input new name: ")
             with connection.cursor() as cursor:
                 cursor.execute(
-                    "UPDATE pp2 SET name = %s WHERE number = %s", (nam, num)
+                    f"UPDATE {table_name} SET name = %s WHERE number = %s", (nam, num)
             )
             print("[INFO] name changed succesfully")
         else:
@@ -79,7 +79,7 @@ try:
             num = input("input new numbe: ")
             with connection.cursor() as cursor:
                 cursor.execute(
-                    "UPDATE pp2 SET number = %s WHERE name = %s", (num, nam)
+                    f"UPDATE {table_name} SET number = %s WHERE name = %s", (num, nam)
             )
             print("[INFO] number changed succesfully")
         connection.commit()
@@ -89,13 +89,13 @@ try:
             if n.lower() == "name":
                 nam = input("Input the name: ")
                 cursor.execute(
-                    "SELECT number FROM pp2 WHERE name = %s", (nam,)
+                    f"SELECT number FROM {table_name} WHERE name = %s", (nam,)
                 )
                 result = cursor.fetchone()
             else:
                 number = input("Input the number: ")
                 cursor.execute(
-                    "SELECT name FROM pp2 WHERE number = %s", (number,)
+                    f"SELECT name FROM {table_name} WHERE number = %s", (number,)
                 )
             result = cursor.fetchall()
 
@@ -107,12 +107,12 @@ try:
             if n.lower() == "name":
                 nam = input("Input the name: ")
                 cursor.execute(
-                "Delete FROM pp2 WHERE name = %s", (nam,)
+                f"Delete FROM {table_name} WHERE name = %s", (nam,)
                 )
             else:
                 number = input("Input the number: ")
                 cursor.execute(
-                "Delete FROM pp2 WHERE number = %s", (number,)
+                f"Delete FROM {table_name} WHERE number = %s", (number,)
                 )
         connection.commit()
     if num == 8:
@@ -120,12 +120,12 @@ try:
         with connection.cursor() as cursor:
             if n.lower() == "name":
                 name=input("input the name: ")
-                cursor.execute(f"SELECT * FROM pp2 WHERE name like'{name}%'")
+                cursor.execute(f"SELECT * FROM {table_name} WHERE name like'{name}%'")
                 for row in cursor.fetchall():
                     print(row)
             else:
                 number = input("Input the number: ")
-                cursor.execute(f"SELECT * FROM pp2 WHERE number like'{number}%'")
+                cursor.execute(f"SELECT * FROM {table_name} WHERE number like'{number}%'")
                 for row in cursor.fetchall():
                     print(row)
     if  num == 9:
@@ -138,7 +138,7 @@ try:
         with connection.cursor() as cursor:
             for name, number in minibook.items():
                 cursor.execute(
-                "INSERT INTO pp2 (name, number) VALUES (%s, %s)",
+                f"INSERT INTO {table_name} (name, number) VALUES (%s, %s)",
                 (name, number)
                 )
             print("[INFO] ")
@@ -148,7 +148,7 @@ try:
         na=input("input what times a: ")
         with connection.cursor() as cursor:
             cursor.execute(
-                "SELECT * FROM pp2 ORDER BY id LIMIT %s OFFSET %s",(n,na)
+                f"SELECT * FROM {table_name} ORDER BY id LIMIT %s OFFSET %s",(n,na)
             )
             print("[INFO] succesfully")
             results = cursor.fetchall()
@@ -163,7 +163,7 @@ try:
     def add_or_update():
         name = input("Enter name: ")
         number = input("Enter phone: ")
-        with connection.cursor() as cursor:  # <--- вот тут создаётся cursor
+        with connection.cursor() as cursor:  
             cursor.execute("CALL add_or_update(%s, %s)", (name, number))
             connection.commit()
             print("User inserted or updated successfully.")
@@ -171,7 +171,7 @@ try:
         name = input("Enter name (leave empty if not using): ").strip()
         number = input("Enter phone (leave empty if not using): ").strip()
 
-    # Заменяем пустую строку на None
+
         name = name if name else None
         number = number if number else None
         with connection.cursor() as cursor:
@@ -184,7 +184,3 @@ try:
         add_or_update()
 except Exception as ex:
     print("[INFO] Error working with PostgreSQL",ex)
-finally:
-    if connection:
-        connection.close()
-        print("[INFO] PostgreSQL connection closed")
