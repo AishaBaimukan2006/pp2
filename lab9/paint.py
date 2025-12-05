@@ -1,3 +1,8 @@
+rectangle_width = 100
+rectangle_height = 40
+rectangle_x = WIDTH // 2 - rectangle_width // 2
+rectangle_y = 50
+rectangle_speed = 4
 import pygame
 from sys import exit
 
